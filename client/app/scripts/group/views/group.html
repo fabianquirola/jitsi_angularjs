@@ -5,15 +5,17 @@
 </div>
 
 <div class="main">
+    <input type="text" name="roomName" ng-model="room_name" class="form-control">
+
     <div id="meet">
 
     </div>
-    <button ng-click='newMeet()'>
-      Generate Meeting
+    <button ng-click='newMeet(true)' class="btn btn-outline-primary">
+      Moderator
     </button>
 
-    <button ng-click='newMeetNM()'>
-      Generate Meeting no moderator
+    <button ng-click='newMeet(false)' class="btn btn-outline-secondary">
+      Participant
     </button>
 
     <div id="meetParticipant">
