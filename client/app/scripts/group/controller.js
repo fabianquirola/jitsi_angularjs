@@ -36,13 +36,10 @@ angular.module('Group')
   var api;
 
   var generateMeeting = function (room_name , is_moderator , jwt){
-    const domain = '8x8.vc';
-    const options = {
-      //roomName: `idukay-${ room_name }`,
-      //roomName: `idukay-${ room_name }`,
-      roomName: `vpaas-magic-cookie-1a656b2d05664edbbdad560acaee1fd7/${ room_name }`,
+    var domain = '8x8.vc';
+    var options = {
+      roomName: 'vpaas-magic-cookie-1a656b2d05664edbbdad560acaee1fd7/'+ room_name ,
               
-      //width: 800,
       height: 800,
       parentNode: document.querySelector('#meet'),
       jwt: jwt,
@@ -51,7 +48,7 @@ angular.module('Group')
         startWithAudioMuted: true,
         startWithVideoMuted: true,
         prejoinPageEnabled: true,
-        enableWelcomePage: true,
+       // enableWelcomePage: true,
         // remoteVideoMenu: {
         //       // If set to true the 'Kick out' button will be disabled.
         //       disableKick: true
@@ -59,6 +56,8 @@ angular.module('Group')
       
           // If set to true all muting operations of remote participants will be disabled.
           disableRemoteMute: true,
+          defaultLanguage: 'es',
+         // hideLobbyButton: true,
       },
       interfaceConfigOverwrite : {
         HIDE_INVITE_MORE_HEADER: true,
@@ -104,9 +103,9 @@ angular.module('Group')
 
     api = new JitsiMeetExternalAPI(domain, options);
 
-    api.addEventListeners(
+   /* api.addEventListeners(
       'participantJoined' , onParticipantJoined
-    );
+    );*/
   }
 
   
@@ -114,7 +113,7 @@ angular.module('Group')
   var onloadJitsiIframe = function () {
     console.log("ONLOAD TEST");
 
-    const participants = api.getParticipantsInfo();
+    var participants = api.getParticipantsInfo();
     console.log(participants);
 
            window.apij = api;
@@ -122,7 +121,7 @@ angular.module('Group')
 
   var onParticipantJoined = function (event){
     console.log('Joined');
-    console.log(`Hi ${event}`);
+    console.log('Hi'+ event );
   }
 
   var meet = {
